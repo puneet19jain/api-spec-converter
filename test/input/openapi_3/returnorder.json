@@ -1,0 +1,1841 @@
+{
+  "openapi" : "3.0.3",
+  "info" : {
+    "title" : "AH SCM WARP Return Order Processor",
+    "description" : "Return order processor service containing the business logic and connects front end with the Return Order Domain Service.",
+    "version" : "1.0"
+  },
+  "paths" : {
+    "/blockedstocks" : {
+      "get" : {
+        "tags" : [ "Blocked Stock Controller" ],
+        "description" : "Get all the blocked stock from the Stock domain service",
+        "parameters" : [ {
+          "name" : "page",
+          "in" : "query",
+          "schema" : {
+            "format" : "int32",
+            "type" : "integer"
+          }
+        }, {
+          "name" : "perPage",
+          "in" : "query",
+          "schema" : {
+            "format" : "int32",
+            "type" : "integer"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/EnvelopeBlockedStock"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "Blocked Stock Controller" ],
+        "description" : "Update blocked stocks",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "array",
+                "items" : {
+                  "$ref" : "#/components/schemas/BlockedStockUpdateRequest"
+                }
+              }
+            }
+          }
+        },
+        "responses" : {
+          "204" : {
+            "description" : "No Content"
+          }
+        }
+      }
+    },
+    "/blockedstocks/queryfilter" : {
+      "post" : {
+        "tags" : [ "Blocked Stock Controller" ],
+        "description" : "Get a single blocked stock from the Stock domain service",
+        "parameters" : [ {
+          "name" : "page",
+          "in" : "query",
+          "schema" : {
+            "format" : "int32",
+            "type" : "integer"
+          }
+        }, {
+          "name" : "perPage",
+          "in" : "query",
+          "schema" : {
+            "format" : "int32",
+            "type" : "integer"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/QueryFilter"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/EnvelopeBlockedStock"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/blockedstocks/stockstatuschangeid/{stockStatusChangeId}" : {
+      "get" : {
+        "tags" : [ "Blocked Stock Controller" ],
+        "description" : "Get a single blocked stock from the Stock domain service",
+        "parameters" : [ {
+          "name" : "stockStatusChangeId",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "format" : "int64",
+            "type" : "integer"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/BlockedStock"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/blockedstocks/warehousenumber/{warehouseNumber}" : {
+      "get" : {
+        "tags" : [ "Blocked Stock Controller" ],
+        "description" : "Get all the blocked stock from the Stock domain service",
+        "parameters" : [ {
+          "name" : "warehouseNumber",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "format" : "int64",
+            "type" : "integer"
+          }
+        }, {
+          "name" : "page",
+          "in" : "query",
+          "schema" : {
+            "format" : "int32",
+            "type" : "integer"
+          }
+        }, {
+          "name" : "perPage",
+          "in" : "query",
+          "schema" : {
+            "format" : "int32",
+            "type" : "integer"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/EnvelopeBlockedStock"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/blockedstocks/{stockStatusChangeId}/blockedstockremark" : {
+      "get" : {
+        "tags" : [ "Blocked Stock Controller" ],
+        "description" : "Get all remarks per blocked stock from the Stock domain service",
+        "parameters" : [ {
+          "name" : "stockStatusChangeId",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "format" : "int64",
+            "type" : "integer"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/BlockedStockRemark"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Blocked Stock Controller" ],
+        "description" : "Add new remark per blocked stock from the Stock domain service",
+        "parameters" : [ {
+          "name" : "stockStatusChangeId",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "format" : "int64",
+            "type" : "integer"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/BlockedStockRemark"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/BlockedStockRemark"
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "Not Authorized"
+          },
+          "403" : {
+            "description" : "Not Allowed"
+          }
+        },
+        "security" : [ {
+          "SecurityScheme" : [ "CLD-ALEU-AHNL-WARP-USER", "CLD-ALEU-AHNL-WARP-SUPER-USER" ]
+        } ]
+      }
+    },
+    "/blockedstocks/{stockStatusChangeId}/blockedstockremark/{stockStatusChangeRemarkId}" : {
+      "get" : {
+        "tags" : [ "Blocked Stock Controller" ],
+        "description" : "Get a single blocked stock remark per blocked stock from the Stock domain service",
+        "parameters" : [ {
+          "name" : "stockStatusChangeId",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "format" : "int64",
+            "type" : "integer"
+          }
+        }, {
+          "name" : "stockStatusChangeRemarkId",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "format" : "int64",
+            "type" : "integer"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/BlockedStockRemark"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "Blocked Stock Controller" ],
+        "description" : "Update single remark per blocked stock from the Stock domain service",
+        "parameters" : [ {
+          "name" : "stockStatusChangeId",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "format" : "int64",
+            "type" : "integer"
+          }
+        }, {
+          "name" : "stockStatusChangeRemarkId",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "format" : "int64",
+            "type" : "integer"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/BlockedStockRemark"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/BlockedStockRemark"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Blocked Stock Controller" ],
+        "description" : "Get a single blocked stock from the Stock domain service",
+        "parameters" : [ {
+          "name" : "stockStatusChangeId",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "format" : "int64",
+            "type" : "integer"
+          }
+        }, {
+          "name" : "stockStatusChangeRemarkId",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "format" : "int64",
+            "type" : "integer"
+          }
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "No Content"
+          }
+        }
+      }
+    },
+    "/contactpersons/supplierdepotgln/{supplierDepotGLN}" : {
+      "get" : {
+        "tags" : [ "Contact Person Controller" ],
+        "description" : "Fetch Supplier Depot Contact Person for supplierDepotGLN",
+        "parameters" : [ {
+          "name" : "supplierDepotGLN",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "format" : "int64",
+            "type" : "integer"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/SupplierDepotContactPerson"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Contact Person Controller" ],
+        "parameters" : [ {
+          "name" : "supplierDepotGLN",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "format" : "int64",
+            "type" : "integer"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ContactPerson"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SupplierDepotContactPerson"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/contactpersons/supplierdepotnodeid/{supplierDepotNodeId}" : {
+      "get" : {
+        "tags" : [ "Contact Person Controller" ],
+        "description" : "Fetch Supplier Depot Contact Person for supplierDepotNodeId",
+        "parameters" : [ {
+          "name" : "supplierDepotNodeId",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "format" : "int64",
+            "type" : "integer"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/SupplierDepotContactPerson"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emails/emailsenthistory/{returnOrderNumber}" : {
+      "get" : {
+        "tags" : [ "Email Service Controller" ],
+        "description" : "This service is used to fetch email history based on the returnOrderNumber provided.",
+        "parameters" : [ {
+          "name" : "returnOrderNumber",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "format" : "int64",
+            "type" : "integer"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/EmailMsgResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emails/sendemail/{returnOrderNumber}" : {
+      "post" : {
+        "tags" : [ "Email Service Controller" ],
+        "description" : "Call email service in order to push email html data in email table",
+        "parameters" : [ {
+          "name" : "returnOrderNumber",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "format" : "int64",
+            "type" : "integer"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/EmailMsgResponse"
+                }
+              }
+            }
+          }
+        },
+        "deprecated" : true
+      }
+    },
+    "/emails/triggeremail/{returnOrderNumber}" : {
+      "post" : {
+        "tags" : [ "Email Service Controller" ],
+        "description" : "Call email service in order to push email html data in email table",
+        "parameters" : [ {
+          "name" : "returnOrderNumber",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "format" : "int64",
+            "type" : "integer"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        }
+      }
+    },
+    "/parties" : {
+      "get" : {
+        "tags" : [ "Party Controller" ],
+        "description" : "Get all parties per Party type from party domain service",
+        "parameters" : [ {
+          "name" : "partyType",
+          "in" : "query",
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Party"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/parties/{partyGLN}" : {
+      "get" : {
+        "tags" : [ "Party Controller" ],
+        "description" : "Get a single party per global location number from party domain service",
+        "parameters" : [ {
+          "name" : "partyGLN",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Party"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/returnorders" : {
+      "get" : {
+        "tags" : [ "Return Order Controller" ],
+        "description" : "Get all the return orders from the Return Order domain service",
+        "parameters" : [ {
+          "name" : "page",
+          "in" : "query",
+          "schema" : {
+            "format" : "int32",
+            "type" : "integer"
+          }
+        }, {
+          "name" : "perPage",
+          "in" : "query",
+          "schema" : {
+            "format" : "int32",
+            "type" : "integer"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/EnvelopeReturnOrder"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Return Order Controller" ],
+        "description" : "Add new return order using the Return Order and Blocked Stock domain services",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CreateReturnOrderRequestFacade"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ReturnOrder"
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "Not Authorized"
+          },
+          "403" : {
+            "description" : "Not Allowed"
+          }
+        },
+        "security" : [ {
+          "SecurityScheme" : [ "CLD-ALEU-AHNL-WARP-USER", "CLD-ALEU-AHNL-WARP-SUPER-USER" ]
+        } ]
+      }
+    },
+    "/returnorders/eligibleblockedstocks" : {
+      "get" : {
+        "tags" : [ "Return Order Controller" ],
+        "description" : "Get all eligible blocked stocks for return order creation",
+        "parameters" : [ {
+          "name" : "destinationGln",
+          "in" : "query",
+          "schema" : {
+            "format" : "int64",
+            "type" : "integer"
+          }
+        }, {
+          "name" : "destinationType",
+          "in" : "query",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "warehouseNumber",
+          "in" : "query",
+          "schema" : {
+            "format" : "int64",
+            "type" : "integer"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/BlockedStock"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/returnorders/transmitreturnorder/returnordernumber/{returnOrderNumber}" : {
+      "post" : {
+        "tags" : [ "Return Order Controller" ],
+        "description" : "Transmit Return Order by return order number using the Return Order domain service",
+        "parameters" : [ {
+          "name" : "returnOrderNumber",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "format" : "int64",
+            "type" : "integer"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ReturnOrder"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/returnorders/updatereturnorder" : {
+      "post" : {
+        "tags" : [ "Return Order Controller" ],
+        "description" : "Update Return Order using the Return Order domain service",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ReturnOrder"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ReturnOrder"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/returnorders/updatereturnorder/returnordernumber/{returnOrderNumber}" : {
+      "put" : {
+        "tags" : [ "Return Order Controller" ],
+        "description" : "Update Return Order using the Return Order domain service",
+        "parameters" : [ {
+          "name" : "returnOrderNumber",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "format" : "int64",
+            "type" : "integer"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ReturnOrderProcessorUpdateReturnOrderRequest"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ReturnOrder"
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "Not Authorized"
+          },
+          "403" : {
+            "description" : "Not Allowed"
+          }
+        },
+        "security" : [ {
+          "SecurityScheme" : [ "CLD-ALEU-AHNL-WARP-USER", "CLD-ALEU-AHNL-WARP-SUPER-USER" ]
+        } ]
+      }
+    },
+    "/returnorders/withdraw/returnorderline/{returnOrderLineNo}" : {
+      "post" : {
+        "tags" : [ "Return Order Controller" ],
+        "description" : "Withdraw Return Order by returnOrderLineNumber using Return Order domain service",
+        "parameters" : [ {
+          "name" : "returnOrderLineNo",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "format" : "int64",
+            "type" : "integer"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        }
+      }
+    },
+    "/returnorders/withdraw/{returnOrderNumber}" : {
+      "post" : {
+        "tags" : [ "Return Order Controller" ],
+        "description" : "Withdraw Return Order by returnOrderNumber using the Return Order domain service",
+        "parameters" : [ {
+          "name" : "returnOrderNumber",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "format" : "int64",
+            "type" : "integer"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        }
+      }
+    },
+    "/returnorders/{returnOrderNumber}" : {
+      "get" : {
+        "tags" : [ "Return Order Controller" ],
+        "description" : "Get a single return order from the Return Order domain service",
+        "parameters" : [ {
+          "name" : "returnOrderNumber",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "format" : "int64",
+            "type" : "integer"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ReturnOrder"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/suppliers" : {
+      "get" : {
+        "tags" : [ "Supplier Controller" ],
+        "description" : "Get all suppliers from supplier domain service",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/SupplierDepot"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/suppliers/supplierdepotgln/{supplierDepotGLN}" : {
+      "get" : {
+        "tags" : [ "Supplier Controller" ],
+        "description" : "Get a single supplier per SupplierDepotGLN from Supplier domain service",
+        "parameters" : [ {
+          "name" : "supplierDepotGLN",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "format" : "int64",
+            "type" : "integer"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SupplierDepot"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/warehouses" : {
+      "get" : {
+        "tags" : [ "Warehouse Controller" ],
+        "description" : "Get all valid warehouses from warehouse domain service",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Warehouse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/warehouses/{warehouseNumber}" : {
+      "get" : {
+        "tags" : [ "Warehouse Controller" ],
+        "description" : "Get a single warehouse from warehouse domain service",
+        "parameters" : [ {
+          "name" : "warehouseNumber",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "format" : "int32",
+            "type" : "integer"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Warehouse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "BlockedStock" : {
+        "type" : "object",
+        "properties" : {
+          "stockStatusChangeId" : {
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "versionNo" : {
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "opcoGlobalLocationNumber" : {
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "opcoCountryCode" : {
+            "type" : "string"
+          },
+          "storeOrderableItemNumber" : {
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "storeOrderableItemName" : {
+            "type" : "string"
+          },
+          "storeOrderableItemGtin" : {
+            "type" : "string"
+          },
+          "primaryLoadCarrier" : {
+            "type" : "string"
+          },
+          "secondaryLoadCarrier" : {
+            "type" : "string"
+          },
+          "warehouseNumber" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "warehouseName" : {
+            "type" : "string"
+          },
+          "stockType" : {
+            "type" : "boolean"
+          },
+          "stockStatus" : {
+            "type" : "string"
+          },
+          "reasonCode" : {
+            "type" : "string"
+          },
+          "bestBeforeDate" : {
+            "$ref" : "#/components/schemas/Instant"
+          },
+          "quantity" : {
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "pickedUpQuantity" : {
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "sscc" : {
+            "type" : "string"
+          },
+          "sourceSscc" : {
+            "type" : "string"
+          },
+          "supplierDepotGlobalLocationNumber" : {
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "supplierName" : {
+            "type" : "string"
+          },
+          "isComaker" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "foodBankCode" : {
+            "type" : "string"
+          },
+          "stockStatusChangedDate" : {
+            "$ref" : "#/components/schemas/Instant"
+          },
+          "isSupplierKnown" : {
+            "format" : "byte",
+            "type" : "string"
+          },
+          "createdBy" : {
+            "type" : "string"
+          },
+          "creationDate" : {
+            "$ref" : "#/components/schemas/Instant"
+          },
+          "changedBy" : {
+            "type" : "string"
+          },
+          "changedDate" : {
+            "$ref" : "#/components/schemas/Instant"
+          },
+          "blockedStockRemarks" : {
+            "uniqueItems" : true,
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/BlockedStockRemark"
+            }
+          }
+        }
+      },
+      "BlockedStockRemark" : {
+        "type" : "object",
+        "properties" : {
+          "blockedStock" : {
+            "$ref" : "#/components/schemas/BlockedStock"
+          },
+          "stockStatusChangeRemarkId" : {
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "remark" : {
+            "type" : "string"
+          },
+          "createdBy" : {
+            "type" : "string"
+          },
+          "creationDate" : {
+            "$ref" : "#/components/schemas/Instant"
+          },
+          "changedBy" : {
+            "type" : "string"
+          },
+          "changedDate" : {
+            "$ref" : "#/components/schemas/Instant"
+          }
+        }
+      },
+      "BlockedStockUpdateRequest" : {
+        "type" : "object",
+        "properties" : {
+          "stockStatusChangeId" : {
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "foodBankCode" : {
+            "type" : "string"
+          },
+          "stockStatus" : {
+            "type" : "string"
+          },
+          "remark" : {
+            "type" : "string"
+          }
+        }
+      },
+      "ContactPerson" : {
+        "type" : "object",
+        "properties" : {
+          "firstName" : {
+            "type" : "string"
+          },
+          "lastName" : {
+            "type" : "string"
+          },
+          "email" : {
+            "type" : "string"
+          },
+          "jobTitle" : {
+            "$ref" : "#/components/schemas/ContactPersonJobTitle"
+          }
+        }
+      },
+      "ContactPersonJobTitle" : {
+        "enum" : [ "RET" ],
+        "type" : "string"
+      },
+      "CreateReturnOrderRequestFacade" : {
+        "type" : "object",
+        "properties" : {
+          "returnOrderLines" : {
+            "uniqueItems" : true,
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/ReturnOrderProcessorReturnOrderLine"
+            }
+          },
+          "destinationTypeCode" : {
+            "type" : "string"
+          },
+          "departureTime" : {
+            "$ref" : "#/components/schemas/Instant"
+          },
+          "shipToGlobalLocationNumber" : {
+            "format" : "int64",
+            "type" : "integer"
+          }
+        }
+      },
+      "Date" : {
+        "format" : "date",
+        "type" : "string",
+        "example" : "2022-03-10"
+      },
+      "Date1" : {
+        "format" : "date",
+        "type" : "string",
+        "example" : "2022-03-10"
+      },
+      "EmailMsgResponse" : {
+        "type" : "object",
+        "properties" : {
+          "toList" : {
+            "type" : "string"
+          },
+          "messageCreationDate" : {
+            "type" : "string"
+          }
+        }
+      },
+      "EnvelopeBlockedStock" : {
+        "type" : "object",
+        "properties" : {
+          "page" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "perPage" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "total" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "totalPages" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "data" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/BlockedStock"
+            }
+          }
+        }
+      },
+      "EnvelopeReturnOrder" : {
+        "type" : "object",
+        "properties" : {
+          "page" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "perPage" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "total" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "totalPages" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "data" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/ReturnOrder"
+            }
+          }
+        }
+      },
+      "Instant" : {
+        "format" : "date-time",
+        "type" : "string",
+        "example" : "2022-03-10T16:15:50Z"
+      },
+      "KeyValueData" : {
+        "type" : "object",
+        "properties" : {
+          "key" : {
+            "type" : "string"
+          },
+          "value" : {
+            "type" : "string"
+          }
+        }
+      },
+      "Party" : {
+        "type" : "object",
+        "properties" : {
+          "partyNumber" : {
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "partyType" : {
+            "type" : "string"
+          },
+          "partyNumberBase" : {
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "partyName" : {
+            "type" : "string"
+          },
+          "street" : {
+            "type" : "string"
+          },
+          "houseNumber" : {
+            "type" : "string"
+          },
+          "postalCode" : {
+            "type" : "string"
+          },
+          "city" : {
+            "type" : "string"
+          },
+          "state" : {
+            "type" : "string"
+          },
+          "countryCode" : {
+            "type" : "string"
+          },
+          "isStockAH" : {
+            "type" : "string"
+          },
+          "score" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "emailIDs" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          },
+          "partyGlobalLocationNumber" : {
+            "type" : "string"
+          },
+          "firstDateGLNValid" : {
+            "$ref" : "#/components/schemas/Date1"
+          },
+          "lastDateGLNValid" : {
+            "$ref" : "#/components/schemas/Date1"
+          },
+          "createdBy" : {
+            "type" : "string"
+          },
+          "creationDate" : {
+            "$ref" : "#/components/schemas/Instant"
+          },
+          "changedBy" : {
+            "type" : "string"
+          },
+          "changedDate" : {
+            "$ref" : "#/components/schemas/Instant"
+          }
+        }
+      },
+      "QueryFilter" : {
+        "type" : "object",
+        "properties" : {
+          "ssccArray" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          },
+          "warehouseNumber" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "storeOrderableItemNumber" : {
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "storeOrderableItemName" : {
+            "type" : "string"
+          },
+          "reasonCode" : {
+            "type" : "string"
+          },
+          "sscc" : {
+            "type" : "string"
+          },
+          "supplierDepotGlobalLocationNumber" : {
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "supplierName" : {
+            "type" : "string"
+          }
+        }
+      },
+      "ReplenishmentNode" : {
+        "type" : "object",
+        "properties" : {
+          "nodeId" : {
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "supplierDepotGLN" : {
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "supplierDepotName" : {
+            "type" : "string"
+          },
+          "supplierDepotNodeType" : {
+            "type" : "string"
+          }
+        }
+      },
+      "ReturnOrder" : {
+        "type" : "object",
+        "properties" : {
+          "returnOrderNumber" : {
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "versionNumber" : {
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "opcoGllobalLocationNumber" : {
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "opcoCountryCode" : {
+            "type" : "string"
+          },
+          "warehouseNumber" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "returnOrderCode" : {
+            "type" : "string"
+          },
+          "destinationTypeCode" : {
+            "type" : "string"
+          },
+          "destination" : {
+            "type" : "string"
+          },
+          "shipToGlobalLocationNumber" : {
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "shipPrimaryLoadCarrierFlag" : {
+            "type" : "string"
+          },
+          "shipSecondaryLoadCarrierFlag" : {
+            "type" : "string"
+          },
+          "departureDateTime" : {
+            "$ref" : "#/components/schemas/Instant"
+          },
+          "transmissionDateTime" : {
+            "$ref" : "#/components/schemas/Instant"
+          },
+          "status" : {
+            "type" : "string"
+          },
+          "remark" : {
+            "type" : "string"
+          },
+          "createdBy" : {
+            "type" : "string"
+          },
+          "creationDate" : {
+            "$ref" : "#/components/schemas/Instant"
+          },
+          "changedBy" : {
+            "type" : "string"
+          },
+          "changedDate" : {
+            "$ref" : "#/components/schemas/Instant"
+          },
+          "returnOrderLines" : {
+            "uniqueItems" : true,
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/ReturnOrderLine"
+            }
+          },
+          "returnOrderEmailLineList" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/ReturnOrderEmailLine"
+            }
+          },
+          "secondaryLoadCarrierList" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/KeyValueData"
+            }
+          },
+          "primaryLoadCarrierList" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/KeyValueData"
+            }
+          }
+        }
+      },
+      "ReturnOrderEmailLine" : {
+        "type" : "object",
+        "properties" : {
+          "returnOrder" : {
+            "$ref" : "#/components/schemas/ReturnOrder"
+          },
+          "returnOrderLineItemNumber" : {
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "localNumber" : {
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "itemNumber" : {
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "unitsPerItem" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "quantity" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "itemDescription" : {
+            "type" : "string"
+          },
+          "primaryLoadCarrier" : {
+            "type" : "string"
+          },
+          "secondaryLoadCarrier" : {
+            "type" : "string"
+          },
+          "bestBeforeDate" : {
+            "type" : "string"
+          },
+          "reason" : {
+            "type" : "string"
+          },
+          "secondaryQuantity" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "createdBy" : {
+            "type" : "string"
+          },
+          "primaryLoadCarrierName" : {
+            "type" : "string"
+          },
+          "secondaryLoadCarrierName" : {
+            "type" : "string"
+          }
+        }
+      },
+      "ReturnOrderLine" : {
+        "type" : "object",
+        "properties" : {
+          "returnOrder" : {
+            "$ref" : "#/components/schemas/ReturnOrder"
+          },
+          "returnOrderLineNumber" : {
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "returnOrderNumber" : {
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "versionNumber" : {
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "stockStatusChangeId" : {
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "sscc" : {
+            "type" : "string"
+          },
+          "destinationCode" : {
+            "type" : "string"
+          },
+          "status" : {
+            "type" : "string"
+          },
+          "createdBy" : {
+            "type" : "string"
+          },
+          "creationDate" : {
+            "$ref" : "#/components/schemas/Instant"
+          },
+          "changedBy" : {
+            "type" : "string"
+          },
+          "changedDate" : {
+            "$ref" : "#/components/schemas/Instant"
+          }
+        }
+      },
+      "ReturnOrderProcessorReturnOrderLine" : {
+        "type" : "object",
+        "properties" : {
+          "blockedStockStatusChangeId" : {
+            "format" : "int64",
+            "type" : "integer"
+          }
+        }
+      },
+      "ReturnOrderProcessorUpdateReturnOrderRequest" : {
+        "type" : "object",
+        "properties" : {
+          "returnOrderLines" : {
+            "uniqueItems" : true,
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/ReturnOrderProcessorReturnOrderLine"
+            }
+          },
+          "pickUpDate" : {
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "remark" : {
+            "type" : "string"
+          }
+        }
+      },
+      "Supplier" : {
+        "type" : "object",
+        "properties" : {
+          "supplierId" : {
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "versionNumber" : {
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "supplierGLN" : {
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "supplierName" : {
+            "type" : "string"
+          },
+          "firstDateGLNValid" : {
+            "$ref" : "#/components/schemas/Date"
+          },
+          "lastDateGLNValid" : {
+            "$ref" : "#/components/schemas/Date"
+          },
+          "createdBy" : {
+            "type" : "string"
+          },
+          "creationDate" : {
+            "$ref" : "#/components/schemas/Instant"
+          },
+          "changedBy" : {
+            "type" : "string"
+          },
+          "changedDate" : {
+            "$ref" : "#/components/schemas/Instant"
+          }
+        }
+      },
+      "SupplierDepot" : {
+        "type" : "object",
+        "properties" : {
+          "nodeId" : {
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "isHotel" : {
+            "format" : "byte",
+            "type" : "string"
+          },
+          "orderTelefax" : {
+            "type" : "string"
+          },
+          "orderTelephone" : {
+            "type" : "string"
+          },
+          "orderEmail" : {
+            "type" : "string"
+          },
+          "replenishmentId" : {
+            "type" : "string"
+          },
+          "isMandatoryReview" : {
+            "format" : "byte",
+            "type" : "string"
+          },
+          "reviewThreshold" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "customerNumber" : {
+            "type" : "string"
+          },
+          "internalOrderNote" : {
+            "type" : "string"
+          },
+          "emptyOrderSuggestions" : {
+            "type" : "string"
+          },
+          "emptyOrderSuggestionsEmail" : {
+            "type" : "string"
+          },
+          "expectedAcknowledgement" : {
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "expectedConfirmation" : {
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "wdfCalculationPeriod" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "wdfTransferFrequency" : {
+            "type" : "string"
+          },
+          "wdfTransferFrequencyDay" : {
+            "type" : "string"
+          },
+          "wdfTransferFrequencyTime" : {
+            "$ref" : "#/components/schemas/Date"
+          },
+          "wdfTransferPeriod" : {
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "wdfTransferSelection" : {
+            "type" : "string"
+          },
+          "wdfTransferMethodCode" : {
+            "type" : "string"
+          },
+          "wdfTransferAddress" : {
+            "type" : "string"
+          },
+          "isComaker" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "supplierOrderGln" : {
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "isForecastSourceDeviation" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "isSupplierGlnLocked" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "isDefault" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "transMethInhCode" : {
+            "type" : "string"
+          },
+          "supplierId" : {
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "replenishmentNode" : {
+            "$ref" : "#/components/schemas/ReplenishmentNode"
+          },
+          "supplier" : {
+            "$ref" : "#/components/schemas/Supplier"
+          }
+        }
+      },
+      "SupplierDepotContactPerson" : {
+        "type" : "object",
+        "properties" : {
+          "supplierContactPersonId" : {
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "nodeId" : {
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "versionNumber" : {
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "jobTitleCode" : {
+            "type" : "string"
+          },
+          "firstName" : {
+            "type" : "string"
+          },
+          "lastName" : {
+            "type" : "string"
+          },
+          "emailId" : {
+            "type" : "string"
+          },
+          "workPhone" : {
+            "type" : "string"
+          },
+          "mobilePhone" : {
+            "type" : "string"
+          },
+          "createdBy" : {
+            "type" : "string"
+          },
+          "creationDate" : {
+            "$ref" : "#/components/schemas/Instant"
+          },
+          "changedBy" : {
+            "type" : "string"
+          },
+          "changedDate" : {
+            "$ref" : "#/components/schemas/Instant"
+          }
+        }
+      },
+      "Warehouse" : {
+        "type" : "object",
+        "properties" : {
+          "nodeId" : {
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "warehouseName" : {
+            "type" : "string"
+          },
+          "globalLocationNumber" : {
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "warehouseNumber" : {
+            "type" : "string"
+          },
+          "abbreviation" : {
+            "type" : "string"
+          },
+          "internalHandlingTime" : {
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "isCalendarPerGoodsAddress" : {
+            "format" : "byte",
+            "type" : "string"
+          },
+          "invoiceGlobalLocationNumber" : {
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "isConsolidationPoint" : {
+            "format" : "byte",
+            "type" : "string"
+          },
+          "isEnableWarehouseForReturns" : {
+            "format" : "byte",
+            "type" : "string"
+          },
+          "pickUpDays" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "emailIDs" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          }
+        }
+      }
+    },
+    "securitySchemes" : {
+      "SecurityScheme" : {
+        "type" : "http",
+        "description" : "Authentication",
+        "scheme" : "bearer",
+        "bearerFormat" : "JWT"
+      }
+    }
+  }
+}
